@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { GET_POKEMON } from "../graphql/get-pokemons";
+import { GET_POKEMON } from "../graphql/get-data";
 
 export const FavoritePokemon = () => {
   const { loading, error, data } = useQuery(GET_POKEMON, {

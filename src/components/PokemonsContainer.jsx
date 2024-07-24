@@ -1,7 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { Pokemon } from "./Pokemon";
 import { FavoritePokemon } from "./FavoritePokemon";
-import { GET_POKEMONS } from "../graphql/get-pokemons";
+import { GET_POKEMONS } from "../graphql/get-data";
+import { Link } from "react-router-dom";
 
 export const PokemonsContainer = () => {
   const { loading, error, data } = useQuery(GET_POKEMONS, {
@@ -15,6 +16,8 @@ export const PokemonsContainer = () => {
 
   return (
     <>
+      <Link to={"/form"}>TO Game Form</Link>
+      <hr />
       <p style={{ color: "white", fontWeight: "bold" }}>
         We've captured a whopping {data.pokemons.length} Pokémons in our
         database!

@@ -1,17 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
-const client = new ApolloClient({
-  uri: "https://graphql-pokemon2.vercel.app/",
-  cache: new InMemoryCache(),
-});
+import localClient from "./apolloClients/localClient";
+import externalClient from "./apolloClients/externalClient";
+import { ApolloProvider as LocalApolloProvider } from "@apollo/client";
+import { ApolloProvider as ExternalApolloProvider } from "@apollo/client";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <LocalApolloProvider client={localClient}>
+      <ExternalApolloProvider client={externalClient}>
+        <App />
+      </ExternalApolloProvider>
+    </LocalApolloProvider>
   </React.StrictMode>
 );

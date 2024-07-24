@@ -41,3 +41,21 @@ export const GET_POKEMON = gql`
     }
   }
 `;
+
+export const GET_GAMES = gql`
+  query {
+    games {
+      id
+      title
+    }
+  }
+`;
+
+export const ADD_GAME_MUTATION = gql`
+  mutation AddMutation($game: AddGameInput!) {
+    addGame(game: $game) {
+      id
+      title
+    }
+  }
+`;

@@ -1,6 +1,23 @@
 import gql from "graphql-tag";
 
 export const typeDefs = gql`
+  type Pokemon {
+    id: ID
+    name: String
+    image: String
+    maxHP: String
+    maxCP: String
+    attacks: [PokemonAttack]
+  }
+  type PokemonAttack {
+    fast: [Attack]
+    special: [Attack]
+  }
+  type Attack {
+    name: String
+    type: Int
+    damage: Int
+  }
   type Game {
     id: ID!
     title: String!
@@ -27,6 +44,7 @@ export const typeDefs = gql`
     game(id: ID!): Game
     authors: [Author]
     author(id: ID!): Author
+    pokemons(first: Int!): [Pokemon]
   }
   type Mutation {
     deleteGame(id: ID!): [Game]
@@ -35,7 +53,7 @@ export const typeDefs = gql`
   }
   input AddGameInput {
     title: String!
-    platform: [String!]!
+    platform: [String]
   }
   input EditGameInput {
     title: String
