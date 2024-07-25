@@ -47,6 +47,7 @@ export const GET_GAMES = gql`
     games {
       id
       title
+      platform
     }
   }
 `;
@@ -56,6 +57,7 @@ export const ADD_GAME_MUTATION = gql`
     addGame(game: $game) {
       id
       title
+      platform
     }
   }
 `;

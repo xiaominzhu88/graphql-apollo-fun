@@ -1,7 +1,7 @@
 let games = [
-  { id: "1", title: "title1", platform: ["Xbox", "PC"] },
-  { id: "2", title: "title2", platform: ["PS5", "PC"] },
-  { id: "3", title: "title3", platform: ["Switch"] },
+  { id: "1", title: "Game 1", platform: ["Xbox", "PC"] },
+  { id: "2", title: "Game 2", platform: ["PS5", "PC"] },
+  { id: "3", title: "Game 3", platform: ["Switch"] },
 ];
 
 let authors = [
