@@ -61,3 +61,13 @@ export const ADD_GAME_MUTATION = gql`
     }
   }
 `;
+
+export const DELETE_GAME_MUTATION = gql`
+  mutation DeleteMutation($id: ID!) {
+    deleteGame(id: $id) {
+      id
+      title
+      platform
+    }
+  }
+`;

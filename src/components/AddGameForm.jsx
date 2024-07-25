@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_GAME_MUTATION, GET_GAMES } from "../graphql/get-data";
+import {
+  ADD_GAME_MUTATION,
+  GET_GAMES,
+  DELETE_GAME_MUTATION,
+} from "../graphql/get-data";
 import { Link } from "react-router-dom";
 import localClient from "../apolloClients/localClient";
 import Select, { components } from "react-select";
@@ -24,6 +28,10 @@ export const AddGameForm = () => {
     client: localClient,
     onCompleted: () => refetch(), // Refetch the games query after mutation completes
   });
+  const [deleteGame] = useMutation(DELETE_GAME_MUTATION, {
+    client: localClient,
+    onCompleted: () => refetch(),
+  });
 
   const handleTitleChange = (event) => {
     setGameData({
@@ -46,7 +54,10 @@ export const AddGameForm = () => {
         game: gameData,
       },
     });
-    setGameData({ title: "", platform: [] });
+  };
+
+  const handleDelete = async (id) => {
+    await deleteGame({ variables: { id } });
   };
 
   const platformOptions = [
@@ -55,6 +66,8 @@ export const AddGameForm = () => {
     { label: "PS5", value: "PS5" },
     { label: "Switch", value: "Switch" },
   ];
+
+  console.log(data);
 
   return (
     <>
@@ -93,9 +106,16 @@ export const AddGameForm = () => {
               <li style={{ color: "white" }}> {game.title}</li>
               <div style={{ color: "white" }}>
                 Platform:{" "}
-                {game.platform.map((item) => (
-                  <span>{item} </span>
+                {game.platform.map((item, index) => (
+                  <span key={index}>{item} </span>
                 ))}
+                <button
+                  style={{ marginLeft: 6 }}
+                  type="button"
+                  onClick={() => handleDelete(game.id)}
+                >
+                  X
+                </button>
               </div>
             </ul>
           ))}

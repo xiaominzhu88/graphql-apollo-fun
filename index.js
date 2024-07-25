@@ -46,7 +46,8 @@ const resolvers = {
   },
   Mutation: {
     deleteGame(_, args) {
-      return db.games.filter((game) => game.id !== args.id);
+      db.games = db.games.filter((game) => game.id !== args.id);
+      return db.games;
     },
     addGame(_, args) {
       let game = {
